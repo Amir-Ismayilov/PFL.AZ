@@ -32,10 +32,6 @@ export default {
   computed: {
     ...mapGetters({clubs: "module/clubs/getAllClubs"}),
   },
-
-  mounted() {
-    console.log(this.clubs)
-  }
 }
 </script>
 

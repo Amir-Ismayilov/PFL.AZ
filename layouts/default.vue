@@ -1,6 +1,7 @@
 <template>
   <div>
     <mainHeader/>
+    <scorebarMatch/>
     <transition name="fade" mode="out-in">
       <Nuxt :key="$route.path"/>
     </transition>
@@ -11,12 +12,14 @@
 <script>
 import mainHeader from "../components/main/mainHeader";
 import mainFooter from "../components/main/mainFooter";
+import scorebarMatch from "../components/scorebarMatch";
 
 export default {
   name: "default.vue",
   components: {
     mainHeader,
-    mainFooter
+    mainFooter,
+    scorebarMatch
   },
   mounted() {
     // For Loading

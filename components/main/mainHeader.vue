@@ -3,7 +3,7 @@
     <section class="section_nav_top">
       <div class="container">
         <div class="row">
-          <div class="col-8">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-9">
             <ul class="social_media">
               <li>
                 <a href="https://www.bundesliga.at/">BUNDESLIGA.AT</a>
@@ -63,7 +63,7 @@
             </ul>
           </div>
 
-          <div class="col-4">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-3">
             <div class="search_container">
               <input type="text" placeholder="axtariş et">
             </div>
@@ -77,7 +77,17 @@
           <header>
             <div class="header_main">
               <div class="logo_main_wrapper">
-                <img src="@/assets/icons/logo_white.png" alt="main_logo">
+                <nuxt-link to="/">
+                  <img src="@/assets/icons/logo_white.png" alt="main_logo">
+                </nuxt-link>
+              </div>
+            </div>
+
+            <div class="header_club_container">
+              <div v-for="(club,index) in clubs.slice(-12)" :key="index" class="header_club_logo">
+                <nuxt-link :to='/clubs/ + club.id'>
+                  <img :src="club.logo" :alt="club.title_en">
+                </nuxt-link>
               </div>
             </div>
           </header>
@@ -100,19 +110,22 @@
                 <nuxt-link to="#">tabelle</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="#">spielplan</nuxt-link>
+                <nuxt-link to="/news">news</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="#">video</nuxt-link>
+                <nuxt-link to="#">multimedia</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="#">statistik</nuxt-link>
+                <nuxt-link to="/players">players</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="games">games</nuxt-link>
+                <nuxt-link to="/games">games</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="clubs">clubs</nuxt-link>
+                <nuxt-link to="/clubs">clubs</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/contacts">contacts</nuxt-link>
               </li>
             </ul>
           </nav>
@@ -123,8 +136,13 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "mainHeader"
+  name: "mainHeader",
+  computed: {
+    ...mapGetters({clubs: "module/clubs/getAllClubs"}),
+  },
 }
 </script>
 
@@ -163,6 +181,7 @@ export default {
   background: rgba(255, 255, 255, 0.7);
   color: var(--dark-font-color);
   height: 30px;
+  width: 100%;
   padding-left: 10px;
   font-size: 12px;
   border: none;
@@ -172,6 +191,26 @@ export default {
 .section_main_header {
   padding: 20px 0;
   background: var(--dark-font-color);
+}
+
+.section_main_header header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.header_club_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_club_logo img {
+  height: auto;
+  max-width: 50px;
+  object-fit: contain;
 }
 
 .logo_main_wrapper img {
@@ -210,4 +249,6 @@ export default {
 .section_main_nav ul li:last-child a {
   border-right: none;
 }
+
+
 </style>
