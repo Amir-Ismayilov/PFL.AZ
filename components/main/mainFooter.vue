@@ -207,7 +207,8 @@ export default {
 }
 
 .section_footer_copyright {
-  padding: 10px 0;
+  margin-top: -20px;
+  padding-bottom: 10px;
   background-color: #191e24;
 }
 </style>
