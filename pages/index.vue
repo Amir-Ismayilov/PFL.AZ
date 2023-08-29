@@ -9,11 +9,7 @@
           <div class="col-12">
             <h1>Bombardirlər</h1>
           </div>
-
           <TopPlayer />
-<!--          <div v-for="(bombarder,index) in bombardersAll.slice(0, 10)" :key="index">-->
-<!--            <p><span>Goals</span> {{ bombarder.goals }}</p>-->
-<!--          </div>-->
         </div>
       </div>
     </section>
@@ -41,7 +37,7 @@
 
 <script>
 import polls from "../components/polls";
-import TopPlayer from '~/components/TopPlayer';
+import TopPlayer from '../components/TopPlayer';
 
 import NewsItem from "../components/news/NewsItem";
 import {mapGetters} from "vuex";
@@ -69,7 +65,7 @@ export default {
 
 .section_bombarders_area h1, .section_news_area h1 {
   max-width: 300px;
-  margin: 0 auto 25px auto;
+  margin: 0 auto 50px auto;
   text-align: center;
   color: var(--dark-font-color);
   border-bottom: 1px solid var(--dark-font-color);

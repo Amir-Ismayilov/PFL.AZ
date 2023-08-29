@@ -107,3 +107,19 @@ input[type="reset"]:active {
   text-shadow: none;
   outline: none;
 }
+
+
+dt {
+  display: inline-block;
+  margin-right: 7px;
+  font-weight: normal;
+  font-size: 14px;
+  float: left;
+  clear: left;
+}
+
+dd {
+  display: inline-block;
+  font-size: 14px;
+  float: left;
+}

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <section class="section_nav_top">
+    <section class="section_navigation">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-9">
-            <ul class="social_media">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+            <ul class="social_media_container">
               <li>
                 <a href="https://www.bundesliga.at/">BUNDESLIGA.AT</a>
-                <div class="social_media_container">
+                <div class="social_media_wrapper">
                   <a href="https://www.facebook.com/bundesliga74" target="_blank">
                     <fa :icon="['fab', 'square-facebook']"/>
                   </a>
@@ -28,7 +28,7 @@
 
               <li>
                 <a href="https://www.2liga.at/">2LIGA.AT</a>
-                <div class="social_media_container">
+                <div class="social_media_wrapper">
                   <a href="https://www.facebook.com/2Liga.at" target="_blank">
                     <fa :icon="['fab', 'square-facebook']"/>
                   </a>
@@ -46,7 +46,7 @@
 
               <li>
                 <a href="https://www.oefbl.at/">OEFBL.AT</a>
-                <div class="social_media_container">
+                <div class="social_media_wrapper">
                   <a href="https://twitter.com/OEFBL" target="_blank">
                     <fa :icon="['fab', 'twitter']"/>
                   </a>
@@ -63,7 +63,7 @@
             </ul>
           </div>
 
-          <div class="col-12 col-sm-12 col-md-12 col-lg-3">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-3">
             <div class="search_container">
               <input type="text" placeholder="axtariş et">
             </div>
@@ -71,20 +71,19 @@
         </div>
       </div>
     </section>
+
     <section class="section_main_header">
       <div class="container">
         <div class="row">
           <header>
-            <div class="header_main">
-              <div class="logo_main_wrapper">
-                <nuxt-link to="/">
-                  <img src="@/assets/icons/logo_white.png" alt="main_logo">
-                </nuxt-link>
-              </div>
+            <div class="logo_main_wrapper">
+              <nuxt-link to="/">
+                <img src="../../assets/icons/logo_white.png" alt="main_logo">
+              </nuxt-link>
             </div>
 
-            <div class="header_club_container">
-              <div v-for="(club,index) in clubs.slice(-12)" :key="index" class="header_club_logo">
+            <div class="header_clubs_container">
+              <div class="header_clubs_logo" v-for="(club,index) in clubs.slice(-10)" :key="index">
                 <nuxt-link :to='/clubs/ + club.id'>
                   <img :src="club.logo" :alt="club.title_en">
                 </nuxt-link>
@@ -95,10 +94,10 @@
       </div>
     </section>
 
-    <section class="section_main_nav">
+    <section class="section_main_menu">
       <div class="container">
         <div class="row">
-          <nav class="col-12">
+          <nav class="col-12 col-sm-12 col-md-12 col-lg-12">
             <ul>
               <li>
                 <nuxt-link to="/">home</nuxt-link>
@@ -110,12 +109,6 @@
                 <nuxt-link to="#">tabelle</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/news">news</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link to="#">multimedia</nuxt-link>
-              </li>
-              <li>
                 <nuxt-link to="/players">players</nuxt-link>
               </li>
               <li>
@@ -123,6 +116,12 @@
               </li>
               <li>
                 <nuxt-link to="/clubs">clubs</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to="/news">news</nuxt-link>
+              </li>
+              <li>
+                <DropdownMenu/>
               </li>
               <li>
                 <nuxt-link to="/contacts">contacts</nuxt-link>
@@ -137,9 +136,13 @@
 
 <script>
 import {mapGetters} from "vuex";
+import DropdownMenu from '../../components/DropdownMenu.vue'
 
 export default {
   name: "mainHeader",
+  components: {
+    DropdownMenu
+  },
   computed: {
     ...mapGetters({clubs: "module/clubs/getAllClubs"}),
   },
@@ -147,46 +150,51 @@ export default {
 </script>
 
 <style scoped>
-.section_nav_top {
+.section_navigation {
   background: #2b2b2b;
   padding: 5px 0;
 }
 
-.social_media {
+.social_media_container {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-.social_media li {
+.social_media_container li {
   display: flex;
   border-right: 1px solid rgba(255, 255, 255, 0.7);
   padding: 0 10px;
 }
 
-.social_media li:last-child {
+.social_media_container li:last-child {
   border-right: unset;
 }
 
-.social_media_container {
+.social_media_wrapper {
   padding: 0 5px;
 }
 
-.social_media_container a {
+.social_media_wrapper a {
   font-size: 15px;
   color: var(--grey-font-color);
 }
 
+.search_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .search_container input {
-  font-family: 'Poppins', sans-serif;
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--dark-font-color);
   height: 30px;
   width: 100%;
   padding-left: 10px;
   font-size: 12px;
-  border: none;
+  color: var(--dark-font-color);
+  background: rgba(255, 255, 255, 0.7);
 }
-
 
 .section_main_header {
   padding: 20px 0;
@@ -195,11 +203,11 @@ export default {
 
 .section_main_header header {
   display: flex;
-  flex-wrap: wrap;
+  gap: 15px;
   justify-content: space-between;
 }
 
-.header_club_container {
+.header_clubs_container {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -207,9 +215,8 @@ export default {
   align-items: center;
 }
 
-.header_club_logo img {
-  height: auto;
-  max-width: 50px;
+.header_clubs_logo img {
+  max-width: 55px;
   object-fit: contain;
 }
 
@@ -220,7 +227,7 @@ export default {
 }
 
 
-.section_main_nav {
+.section_main_menu {
   background: #f4f4f4;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
@@ -229,15 +236,14 @@ export default {
   padding: 20px 0;
 }
 
-.section_main_nav ul {
+.section_main_menu ul {
   display: flex;
   gap: 20px;
   justify-content: center;
   align-items: center;
 }
 
-.section_main_nav ul li a {
-  font-family: 'Poppins', sans-serif;
+.section_main_menu ul li a {
   font-size: 14px;
   text-transform: uppercase;
   border-right: 1px solid var(--dark-font-color);
@@ -246,9 +252,7 @@ export default {
   color: var(--dark-font-color);
 }
 
-.section_main_nav ul li:last-child a {
+.section_main_menu ul li:last-child a {
   border-right: none;
 }
-
-
 </style>

@@ -11,6 +11,8 @@ export default async ({store, route, redirect}) => {
   await store.dispatch('module/contacts/getContactsArray')
   // Bombarders
   await store.dispatch('module/bombarders/getBombardersArray')
+  // Galleries
+  await store.dispatch('module/galleries/getGalleriesArray')
 
   // Tours
   // await store.dispatch('module/tours/getToursArray')

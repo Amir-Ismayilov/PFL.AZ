@@ -222,19 +222,19 @@ export default {
 
 dt {
   color: var(--white-font-color);
-  display: inline-block;
-  margin-right: 7px;
-  font-weight: normal;
-  font-size: 14px;
-  float: left;
-  clear: left;
+  /*display: inline-block;*/
+  /*margin-right: 7px;*/
+  /*font-weight: normal;*/
+  /*font-size: 14px;*/
+  /*float: left;*/
+  /*clear: left;*/
 }
 
 dd {
   color: var(--grey-font-color);
-  display: inline-block;
-  font-size: 14px;
-  float: left;
+  /*display: inline-block;*/
+  /*font-size: 14px;*/
+  /*float: left;*/
 }
 
 
