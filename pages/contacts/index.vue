@@ -6,7 +6,7 @@
           <div class="col-12">
             <h1>Əlaqə</h1>
           </div>
-          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <div class="contacts_card">
               <h2>Telefon & Fax</h2>
 
@@ -20,7 +20,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <div class="contacts_card">
               <h2>Elektron Poct</h2>
 
@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <div class="contacts_card">
               <h2>Ünvan</h2>
               <p>{{ contactsAll.address }}</p>
@@ -172,11 +172,11 @@ export default {
 <style scoped>
 .section_contacts_container {
   padding: 50px 0;
-  background-color: #b6b6b6;
+  background-color: var(--dark-font-color);
 }
 
 .section_contacts_container h1, .login-box h1 {
-  text-align: left;
+  text-align: center;
   color: var(--main-theme-color);
   margin-bottom: 50px;
 }
@@ -184,13 +184,20 @@ export default {
 .contacts_card {
   padding: 30px 20px;
   margin: 10px 0;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid var(--main-theme-color);
-  min-height: 250px;
+  min-height: 200px;
+}
+
+.contacts_card p {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: var(--grey-font-color);
 }
 
 .login-box {
-  margin: 75px 0;
+  margin: 50px 0;
 }
 
 .login-box .user-box {
@@ -202,7 +209,7 @@ export default {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
-  /*color: #fff;*/
+  color: #fff !important;
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid #fff;
@@ -344,5 +351,11 @@ export default {
   color: var(--white-font-color);
   background-color: var(--main-theme-color);
   min-width: 200px;
+}
+
+@media only screen and (max-width: 768px) {
+  .btn_send {
+    min-width: 100%;
+  }
 }
 </style>

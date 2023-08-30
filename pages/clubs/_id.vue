@@ -8,7 +8,7 @@
             <div class="clubs_description_image">
               <img
                 :src="getclubs.cover !== null ? getclubs.cover : require('../../assets/images/placeholder/football_team_placeholder.png')"
-                :alt="getclubs.title_az">
+                :alt="getclubs.title_en">
             </div>
           </div>
 
@@ -340,6 +340,10 @@ export default {
 </script>
 
 <style scoped>
+.clubs_description_image {
+  margin-bottom: 20px;
+}
+
 .clubs_description_image img {
   width: 100%;
   height: 250px;
@@ -355,7 +359,8 @@ export default {
 
 .clubs_description_info {
   display: flex;
-  gap: 50px;
+  flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
   text-align: left;
 }

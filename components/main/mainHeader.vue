@@ -109,9 +109,6 @@
                 <nuxt-link to="#">tabelle</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/players">players</nuxt-link>
-              </li>
-              <li>
                 <nuxt-link to="/games">games</nuxt-link>
               </li>
               <li>
@@ -210,22 +207,31 @@ export default {
 .header_clubs_container {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .header_clubs_logo img {
-  max-width: 55px;
+  width: 100%;
+  display: block;
   object-fit: contain;
+  height: auto;
+  max-width: 42px;
+  margin: 0 auto;
 }
 
 .logo_main_wrapper img {
   width: 100px;
-  height: 50px;
+  height: 100%;
   object-fit: contain;
 }
 
+.logo_main_wrapper a {
+  display: block;
+  height: 100%;
+}
 
 .section_main_menu {
   background: #f4f4f4;
@@ -238,6 +244,7 @@ export default {
 
 .section_main_menu ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   align-items: center;

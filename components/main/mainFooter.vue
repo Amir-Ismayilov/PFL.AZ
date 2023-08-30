@@ -137,7 +137,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <span>© 2023 DSR All Rights Reserved</span>
+            <p>© 2023 DSR All Rights Reserved</p>
           </div>
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
 
