@@ -228,4 +228,19 @@ export default {
   justify-content: flex-end;
   max-width: 400px;
 }
+
+@media only screen and (max-width: 768px) {
+  .player_slide_info_container {
+    max-width: 100%;
+  }
+
+  .player_slide_body a {
+    top: -80px;
+    right: 40px;
+    margin-top: 5px;
+    padding: 10px 15px;
+    display: inline-table;
+  }
+}
+
 </style>
