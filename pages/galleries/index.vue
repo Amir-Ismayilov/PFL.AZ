@@ -5,7 +5,7 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-3" v-for="(gallery,index) in galleries" :key="index">
           <GalleriesItem :galleriesId="gallery.id"
                      :galleriesImage="gallery.image"
-                     :galleriesName="gallery.title_az"
+                     :galleriesTitle="gallery.title_az"
           />
         </div>
       </div>

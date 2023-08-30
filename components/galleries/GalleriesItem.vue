@@ -7,9 +7,8 @@
       </div>
 
       <div class="galleries_description">
-        <span>{{ galleriesName }}</span>
+        <span>{{ galleriesTitle }}</span>
       </div>
-
     </nuxt-link>
   </div>
 </template>
@@ -18,9 +17,9 @@
 export default {
   name: "GalleriesItem",
   props: {
-    clubsId: Number,
-    clubsImage: String,
-    clubsName: String,
+    galleriesId: Number,
+    galleriesImage: String,
+    galleriesTitle: String,
   }
 }
 </script>
