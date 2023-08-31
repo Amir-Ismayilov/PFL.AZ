@@ -31,13 +31,14 @@ export default {
   css: [
     'bootstrap/dist/css/bootstrap.css',
     '@/assets/app.css',
+    '@/assets/app.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src: '~/plugins/fontawesome.js', },
-    {src: '~/plugins/axios.js', },
-    { src: '~/plugins/vue-awesome-swiper.js', ssr: false }
+    {src: '~/plugins/fontawesome.js'},
+    {src: '~/plugins/axios.js'},
+    {src: '~/plugins/vue-gallery.client.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -62,7 +63,7 @@ export default {
       if (savedPosition) {
         return savedPosition;
       } else {
-        return { x: 0, y: 0 };
+        return {x: 0, y: 0};
       }
     }
   },
