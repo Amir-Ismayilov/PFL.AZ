@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-4">
             <div class="contacts_card">
               <h2>Ünvan</h2>
               <p>{{ contactsAll.address }}</p>
@@ -45,35 +45,37 @@
                     <div class="col-12">
                       <h1>Bizə Yazın</h1>
                     </div>
-                    <div class="col-12 col-sm12 col-md-6 col-lg-6">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                       <div class="user-box">
-                        <input type="text" v-model="user.name" id="name" name="name" required="">
+                        <input type="text" v-model="user.name" id="name" name="name" required="" @blur="$v.user.name.$touch()">
                         <label>Name</label>
+                        <!-- Вывод ошибки -->
+                        <span v-if="$v.user.name.$error" class="error-text">Это поле обязательно</span>
                       </div>
                     </div>
 
-                    <div class="col-12 col-sm12 col-md-6 col-lg-6">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                       <div class="user-box">
                         <input type="text" v-model="user.surname" id="surname" name="surname" required="">
                         <label>Surname</label>
                       </div>
                     </div>
 
-                    <div class="col-12 col-sm12 col-md-6 col-lg-6">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                       <div class="user-box">
                         <input type="tel" v-model="user.telephone" id="telephone" name="telephone" required="">
                         <label>Phone</label>
                       </div>
                     </div>
 
-                    <div class="col-12 col-sm12 col-md-6 col-lg-6">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                       <div class="user-box">
                         <input type="email" v-model="user.email" id="email" name="email" required="">
                         <label>Email</label>
                       </div>
                     </div>
 
-                    <div class="col-12 col-sm12 col-md-12 col-lg-12">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div class="user-box">
                         <input type="text" v-model="user.message" id="message" name="message" required="">
                         <label>Message</label>
@@ -91,10 +93,11 @@
 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="contacts_map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d49550.98166670948!2d49.85049702091809!3d40.42774336257701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2saz!4v1693036275028!5m2!1sru!2saz"
-                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <LeafletMap
+                :latitude="contactsAll.map.lat"
+                :longitude="contactsAll.map.long"
+                :address="contactsAll.address"
+              />
             </div>
           </div>
         </div>
@@ -105,9 +108,23 @@
 
 <script>
 import {mapGetters} from "vuex";
+import LeafletMap from '~/components/LeafletMap'
+import {email, minLength, required} from "vuelidate/lib/validators";
 
 export default {
   name: "index",
+  components: {
+    LeafletMap
+  },
+  validations: {
+    user: {
+      name: {required},
+      surname: {required},
+      telephone: {required},
+      email: {required, email},
+      message: {required, minLength: minLength(6)},
+    }
+  },
   data() {
     return {
       // Form Validation
@@ -121,25 +138,14 @@ export default {
       submitted: false
     }
   },
-  validations: {
-    user: {
-      // name: {required},
-      // surname: {required},
-      // telephone: {required},
-      // email: {required, email},
-      // message: {required, minLength: minLength(6)},
-    }
-  },
   methods: {
-    handleSubmit(e) {
-      let self = this;
-      this.submitted = true;
+    handleSubmit() {
+      this.$v.$touch();  // активация всех валидаторов
 
-      // stop here if form is invalid
-      // this.$v.$touch();
-      // if (this.$v.$invalid) {
-      //   return;
-      // }
+      if (this.$v.$invalid) {
+        this.$toast.error('Пожалуйста, заполните все поля правильно.');
+        return;
+      }
 
       this.$axios.$post('/contacts', {
         name: this.user.name,
@@ -148,19 +154,18 @@ export default {
         email: this.user.email,
         message: this.user.message,
       })
-        .then(function (response) {
-          // self.$toast.success('Operation completed successfully', self.alertPosition)
-          document.getElementById("contact_form").reset();
+        .then((response) => {
+          document.getElementById("contact_form").reset(); // сброс формы
+          this.$v.$reset();  // сброс состояния валидаторов
+          this.$toast.success('Ваш запрос успешно отправлен.'); // вывод успешного уведомления
         })
-        .catch(function (err) {
+        .catch((err) => {
           if (err.response.status === 400) {
-            err.response.data.data.forEach(function (message, index) {
-              // self.$toast.error(message, self.alertPosition)
-            })
+            this.$toast.error('Ошибка: неверный запрос.');
           } else if (err.response.status === 500) {
-            // self.$toast.error('Something went wrong', self.alertPosition)
+            this.$toast.error('Ошибка сервера.');
           }
-        })
+        });
     }
   },
   computed: {

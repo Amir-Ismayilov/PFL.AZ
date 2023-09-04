@@ -15,6 +15,30 @@
 
           <gallery v-if="images.length > 0" :images="images" :index="index" @close="index = null"></gallery>
 
+          <div class="btn_group">
+            <nuxt-link
+              v-if="current_index!==0" :to="/galleries/+this.galleries[this.current_index-1].id"
+              class="btn_work">
+              sonrakı
+            </nuxt-link>
+
+            <a v-else href="javascript:void(0)"
+               class="btn_not_work"
+               disabled="disabled">
+              sonrakı
+            </a>
+
+            <nuxt-link
+              v-if="current_index!==this.galleries.length-1" :to="/galleries/+this.galleries[this.current_index+1].id"
+              class="btn_work">
+              əvvəlki
+            </nuxt-link>
+
+            <a v-else href="javascript:void(0)"
+               class="btn_not_work"
+               disabled="disabled">əvvəlki
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -24,6 +48,7 @@
 
 <script>
 import {mapGetters} from "vuex";
+import galleries from "@/pages/galleries/index";
 import VueGallery from 'vue-gallery';
 
 export default {
@@ -33,6 +58,7 @@ export default {
   },
   data() {
     return {
+      current_index: 0,
       images: [],
       index: null
     };
@@ -44,6 +70,7 @@ export default {
 
   mounted() {
     this.formatImages();
+    this.current_index = this.galleries.findIndex(item => item.id === parseInt(this.$route.params.id));
   },
 
   methods: {

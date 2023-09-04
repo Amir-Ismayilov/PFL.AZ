@@ -36,6 +36,30 @@
                 </ul>
               </div>
             </div>
+            <div class="btn_group">
+              <nuxt-link
+                v-if="current_index!==0" :to="/news/+this.news[this.current_index-1].id"
+                class="btn_work">
+                sonrakı
+              </nuxt-link>
+
+              <a v-else href="javascript:void(0)"
+                 class="btn_not_work"
+                 disabled="disabled">
+                sonrakı
+              </a>
+
+              <nuxt-link
+                v-if="current_index!==this.news.length-1" :to="/news/+this.news[this.current_index+1].id"
+                class="btn_work">
+                əvvəlki
+              </nuxt-link>
+
+              <a v-else href="javascript:void(0)"
+                 class="btn_not_work"
+                 disabled="disabled">əvvəlki
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -65,12 +89,20 @@
 
 <script>
 import {mapGetters} from "vuex";
+import news from "@/pages/news/index";
 import NewsItem from "../../components/news/NewsItem";
 import html2pdf from 'html2pdf.js';
 
 
 export default {
-  components: {NewsItem},
+  components: {
+    NewsItem
+  },
+  data() {
+    return {
+      current_index: 0,
+    }
+  },
   computed: {
     ...mapGetters({news: "module/news/getAllNews"}),
     limitedNews() {

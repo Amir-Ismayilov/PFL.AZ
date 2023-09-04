@@ -30,7 +30,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'bootstrap/dist/css/bootstrap.css',
-    '@/assets/app.css',
+    'leaflet/dist/leaflet.css',
+    'leaflet-fullscreen/dist/leaflet.fullscreen.css',
     '@/assets/app.css',
   ],
 
@@ -39,6 +40,8 @@ export default {
     {src: '~/plugins/fontawesome.js'},
     {src: '~/plugins/axios.js'},
     {src: '~/plugins/vue-gallery.client.js'},
+    {src: '~/plugins/vue-toast.js'},
+    {src: '~/plugins/vuelidate.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

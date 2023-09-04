@@ -39,3 +39,42 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
+
+.leaflet-popup-content-wrapper {
+  width: 250px !important;
+  text-align: center !important;
+}
+
+.btn_group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin-top: 30px
+}
+
+.btn_group a {
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--dark-font-color);
+  color: var(--dark-font-color);
+}
+
+.btn_group a:hover {
+  color: var(--main-theme-color);
+}
+
+.btn_work {
+  padding: 5px 15px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.btn_not_work {
+  padding: 5px 15px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  opacity: 0.3;
+  cursor: no-drop;
+  color: black !important;
+}

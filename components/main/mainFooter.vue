@@ -137,7 +137,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <p>© 2023 DSR All Rights Reserved</p>
+            <p>© 2023 LIDER TECH All Rights Reserved</p>
           </div>
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
 
@@ -210,5 +210,9 @@ export default {
   margin-top: -20px;
   padding-bottom: 10px;
   background-color: #191e24;
+}
+
+.section_footer_copyright p {
+  color: var(--white-font-color);
 }
 </style>

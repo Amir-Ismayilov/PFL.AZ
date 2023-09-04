@@ -1,7 +1,5 @@
 <template>
   <div>
-    <polls/>
-
     <!-- Bombarders Area -->
     <section class="section_bombarders_area">
       <div class="container">
@@ -9,7 +7,7 @@
           <div class="col-12">
             <h1>Bombardirlər</h1>
           </div>
-          <TopPlayer />
+          <TopPlayer/>
         </div>
       </div>
     </section>
@@ -32,11 +30,24 @@
         </div>
       </div>
     </section>
+
+    <!-- Polls Area -->
+    <section class="section_polls_area">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1>Sorğu</h1>
+          </div>
+          <Polls/>
+        </div>
+      </div>
+    </section>
+
   </div>
 </template>
 
 <script>
-import polls from "../components/polls";
+import Polls from "../components/Polls";
 import TopPlayer from '../components/TopPlayer';
 
 import NewsItem from "../components/news/NewsItem";
@@ -47,13 +58,13 @@ export default {
   components: {
     NewsItem,
     TopPlayer,
-    polls
+    Polls
   },
   computed: {
     ...mapGetters({
-        newsAll: "module/news/getAllNews",
-        bombardersAll: "module/bombarders/getAllBombarders"
-      }),
+      newsAll: "module/news/getAllNews",
+      bombardersAll: "module/bombarders/getAllBombarders"
+    }),
   },
 }
 </script>
@@ -63,9 +74,9 @@ export default {
   padding: 50px 0;
 }
 
-.section_bombarders_area h1, .section_news_area h1 {
+.section_bombarders_area h1, .section_news_area h1, .section_polls_area h1 {
   max-width: 300px;
-  margin: 0 auto 50px auto;
+  margin: 50px auto;
   text-align: center;
   color: var(--dark-font-color);
   border-bottom: 1px solid var(--dark-font-color);

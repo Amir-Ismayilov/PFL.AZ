@@ -103,9 +103,6 @@
                 <nuxt-link to="/">home</nuxt-link>
               </li>
               <li>
-                <nuxt-link to="/polls">polls</nuxt-link>
-              </li>
-              <li>
                 <nuxt-link to="#">tabelle</nuxt-link>
               </li>
               <li>

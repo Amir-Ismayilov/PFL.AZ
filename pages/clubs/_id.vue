@@ -289,11 +289,15 @@
                   <div class="col-12">
                     <div class="stadion_map_container">
                       <div class="map">
-                        <iframe
-                          src="https://maps.google.de/maps?q=Ziegeleistrasse+76-78,4020,Linz&amp;z=13&amp;t=k&amp;output=embed"
-                          width="100%" height="335" frameborder="0" style="border:0"
-                          allowfullscreen="allowfullscreen">
-                        </iframe>
+                        <LeafletMap
+                          v-if="getclubs.stadion !==null && getclubs.stadion.map_lat !==null && getclubs.stadion.map_long !==null"
+                          :latitude="getclubs.stadion.map_lat"
+                          :longitude="getclubs.stadion.map_long"
+                        />
+                        <p
+                          v-if="getclubs.stadion ==null || getclubs.stadion.lat ==null || getclubs.stadion.long ==null">
+                          Xəritə təfərrüatları təqdim edilməyib
+                        </p>
                       </div>
                     </div>
                   </div>
